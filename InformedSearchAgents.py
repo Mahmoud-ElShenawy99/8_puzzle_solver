@@ -82,4 +82,23 @@ def DFS (initial_state,goal_state):
                 parent_map.set_val(neighbor,s)
 
 
+def BFS (initial_state,goal_state):
+    frontier=[] # queue
+    explored_set= HashSet()
+    parent_map=HashMap()
+    frontier.append(initial_state) #insert s' into frontier
+    parent_map.set_val(initial_state,initial_state) #insert <s',s'> into parent map
+    while len(frontier) != 0 : #while (frontier not empty)
+        s=frontier.pop(0)
+        print(s)
+        explored_set.add(s)
+        if s == goal_state:
+            break
+        neighbors = get_neighbors(s,"BFS")
+        for neighbor in neighbors:
+            print(neighbor)
+            if neighbor not in frontier and not explored_set.contains(neighbor):
+                frontier.append(neighbor)
+                parent_map.set_val(neighbor,s)
+
 
