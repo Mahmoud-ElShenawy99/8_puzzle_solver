@@ -15,6 +15,13 @@ class HashSet:
         else:
             self.table[hv].append(key)
 
+    def get_values(self):
+        values=[]
+        for i in self.table:
+            if i !=None:
+                for j in i:
+                   values.append(j)
+        return values
     def remove(self, key: int) -> None:
         hv = self.calculate_hash_value(key)
 
@@ -23,6 +30,8 @@ class HashSet:
                 self.table[hv].remove(key)
     def clear(self):
         self.table.clear()
+        self.table = [None] * self.size
+
     def contains(self, key: int) -> bool:
         """
         Returns true if this set contains the specified element
@@ -73,6 +82,7 @@ class HashMap:
             bucket.append((key, val))
     def clear(self):
         self.hash_table.clear()
+        self.hash_table = self.create_buckets()
 
     # Return searched value with specific key
     def get_val(self, key):

@@ -19,30 +19,25 @@ class UninformedSearch(QObject):
     state_signal = pyqtSignal(int)
     def __init__(self):
         super(UninformedSearch, self).__init__()
-        print("UninformedSearch")
         self._frontier = []  # stack
-        print("UninforrfsdmedSearch")
         self._explored_set = HashSet()
         self._parent_map = HashMap()
-        print("UninformedSearch")
-        self.thread = threading.Thread(target=self.DFS,args=(arg1,arg2))
-        self.thread.start()
-
+        # self.thread = threading.Thread(target=self.DFS,args=(arg1,arg2))
+        # self.thread.start()
+        self.path=[]
 
 
     def DFS(self,initial_state, goal_state):
-        # self._frontier.clear()
-        # self._explored_set.clear()
-        # self._parent_map.clear()
-        print(initial_state)
+        begin = time.time()
+        self._frontier.clear()
+        self._explored_set.clear()
+        self._parent_map.clear()
         self.state_signal.emit(initial_state)
-        time.sleep(1)
         self._frontier.append(initial_state)  # insert s' into frontier
         self._parent_map.set_val(initial_state, initial_state)  # insert <s',s'> into parent map
         while len(self._frontier) != 0:  # while (frontier not empty)
             s = self._frontier.pop()
             self.state_signal.emit(s)
-            time.sleep(1)
             self._explored_set.add(s)
             if s == goal_state:
                 break
@@ -51,12 +46,19 @@ class UninformedSearch(QObject):
                 if neighbor not in self._frontier and not self._explored_set.contains(neighbor):
                     self._frontier.append(neighbor)
                     self._parent_map.set_val(neighbor, s)
+        end = time.time()
+        path_to_goal, cost_to_path = self.get_path(initial_state, goal_state)
+        return path_to_goal, cost_to_path, self._explored_set.get_values(), int(end - begin)
+
+
 
 
     def BFS(self,initial_state, goal_state):
-        # self._frontier.clear()
-        # self._explored_set.clear()
-        # self._parent_map.clear()
+        begin = time.time()
+        self._frontier.clear()
+        self._explored_set.clear()
+        self._parent_map.clear()
+        self.state_signal.emit(initial_state)
         self._frontier.append(initial_state)  # insert s' into frontier
         self._parent_map.set_val(initial_state, initial_state)  # insert <s',s'> into parent map
         while len(self._frontier) != 0:  # while (frontier not empty)
@@ -65,12 +67,24 @@ class UninformedSearch(QObject):
             self._explored_set.add(s)
             if s == goal_state:
                 break
-            neighbors = self._get_neighbors(s, "BFS")
+            neighbors = self._get_neighbors(s, "DFS")
             for neighbor in neighbors:
-                print(neighbor)
                 if neighbor not in self._frontier and not self._explored_set.contains(neighbor):
                     self._frontier.append(neighbor)
                     self._parent_map.set_val(neighbor, s)
+        end = time.time()
+        path_to_goal,cost_to_path=self.get_path(initial_state,goal_state)
+        return path_to_goal,cost_to_path,self._explored_set.get_values(),int(end-begin)
+
+    def get_path(self,initial_state,goal_state):
+        path_to_goal=[]
+        x=goal_state
+        path_to_goal.append(goal_state)
+        while self._parent_map.get_val(x) != initial_state:
+            x=self._parent_map.get_val(x)
+            path_to_goal.append(x)
+        path_to_goal.append(initial_state)
+        return path_to_goal,len(path_to_goal)-1
 
     def _get_neighbors(self,s, type):
         converted_s = str(s)
