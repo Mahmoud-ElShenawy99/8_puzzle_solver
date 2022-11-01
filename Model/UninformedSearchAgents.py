@@ -28,6 +28,9 @@ class UninformedSearch(QObject):
 
 
     def DFS(self,initial_state, goal_state):
+        if self._check_solvable(initial_state):
+            print("Unsolvable")
+            return False,[],-1,[],0
         begin = time.time()
         self._frontier.clear()
         self._explored_set.clear()
@@ -47,13 +50,26 @@ class UninformedSearch(QObject):
                     self._frontier.append(neighbor)
                     self._parent_map.set_val(neighbor, s)
         end = time.time()
-        path_to_goal, cost_to_path = self.get_path(initial_state, goal_state)
-        return path_to_goal, cost_to_path, self._explored_set.get_values(), int(end - begin)
+        path_to_goal,cost_to_path=self.get_path(initial_state,goal_state)
+        return True,path_to_goal,cost_to_path,self._explored_set.get_values(),int(end-begin)
 
-
+    def _check_solvable(self,state):
+        state = str(state)
+        arr=[]
+        for x in state:
+            arr.append(x)
+        inv_count = 0
+        for i in range(len(arr)):
+            for j in range(i + 1, len(arr)):
+                if (arr[i] > arr[j] and arr[i] != '0' and arr[j] != '0'):
+                    inv_count += 1
+        return True if inv_count %2 == 1 else False
 
 
     def BFS(self,initial_state, goal_state):
+        if self._check_solvable(initial_state):
+            print("Unsolvable")
+            return False,[],-1,[],0
         begin = time.time()
         self._frontier.clear()
         self._explored_set.clear()
@@ -74,7 +90,7 @@ class UninformedSearch(QObject):
                     self._parent_map.set_val(neighbor, s)
         end = time.time()
         path_to_goal,cost_to_path=self.get_path(initial_state,goal_state)
-        return path_to_goal,cost_to_path,self._explored_set.get_values(),int(end-begin)
+        return True,path_to_goal,cost_to_path,self._explored_set.get_values(),int(end-begin)
 
     def get_path(self,initial_state,goal_state):
         path_to_goal=[]
