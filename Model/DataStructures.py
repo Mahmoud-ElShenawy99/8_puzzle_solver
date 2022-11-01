@@ -21,7 +21,8 @@ class HashSet:
         if self.table[hv] != None:
             while key in self.table[hv]:
                 self.table[hv].remove(key)
-
+    def clear(self):
+        self.table.clear()
     def contains(self, key: int) -> bool:
         """
         Returns true if this set contains the specified element
@@ -37,7 +38,7 @@ class HashMap:
 
     # Create empty bucket list of given size
     def __init__(self):
-        self.size = 10000
+        self.size = 1000000
         self.hash_table = self.create_buckets()
 
     def create_buckets(self):
@@ -70,6 +71,8 @@ class HashMap:
             bucket[index] = (key, val)
         else:
             bucket.append((key, val))
+    def clear(self):
+        self.hash_table.clear()
 
     # Return searched value with specific key
     def get_val(self, key):
