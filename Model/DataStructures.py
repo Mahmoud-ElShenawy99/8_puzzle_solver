@@ -15,12 +15,22 @@ class HashSet:
         else:
             self.table[hv].append(key)
 
+    def get_values(self):
+        values=[]
+        for i in self.table:
+            if i !=None:
+                for j in i:
+                   values.append(j)
+        return values
     def remove(self, key: int) -> None:
         hv = self.calculate_hash_value(key)
 
         if self.table[hv] != None:
             while key in self.table[hv]:
                 self.table[hv].remove(key)
+    def clear(self):
+        self.table.clear()
+        self.table = [None] * self.size
 
     def contains(self, key: int) -> bool:
         """
@@ -37,7 +47,7 @@ class HashMap:
 
     # Create empty bucket list of given size
     def __init__(self):
-        self.size = 10000
+        self.size = 1000000
         self.hash_table = self.create_buckets()
 
     def create_buckets(self):
@@ -70,6 +80,9 @@ class HashMap:
             bucket[index] = (key, val)
         else:
             bucket.append((key, val))
+    def clear(self):
+        self.hash_table.clear()
+        self.hash_table = self.create_buckets()
 
     # Return searched value with specific key
     def get_val(self, key):

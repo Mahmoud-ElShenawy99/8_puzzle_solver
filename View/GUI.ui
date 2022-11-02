@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Solver</class>
+ <widget class="QMainWindow" name="Solver">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1205</width>
+    <height>804</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>8 Puzzle Solver</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+background-color: rgb(6, 40, 61);
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="mainlabel">
+        <property name="styleSheet">
+         <string notr="true">font: 87 72pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(223, 246, 255);
+color: rgb(37, 109, 133);
+
+border-radius: 15px;</string>
+        </property>
+        <property name="text">
+         <string>8 Puzzle Solver</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="3" column="3">
+         <widget class="QLabel" name="index8">
+          <property name="styleSheet">
+           <string notr="true">font: 87 72pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(6, 40, 61);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;</string>
+          </property>
+          <property name="text">
+           <string>2</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="index4">
+          <property name="styleSheet">
+           <string notr="true">font: 87 72pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(6, 40, 61);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;</string>
+          </property>
+          <property name="text">
+           <string>5</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="index6">
+          <property name="styleSheet">
+           <string notr="true">font: 87 72pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(6, 40, 61);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;</string>
+          </property>
+          <property name="text">
+           <string>7</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLabel" name="index2">
+          <property name="styleSheet">
+           <string notr="true">font: 87 72pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(6, 40, 61);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;</string>
+          </property>
+          <property name="text">
+           <string>3</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="index1">
+          <property name="styleSheet">
+           <string notr="true">font: 87 72pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(6, 40, 61);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;</string>
+          </property>
+          <property name="text">
+           <string>1</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QLabel" name="index5">
+          <property name="styleSheet">
+           <string notr="true">font: 87 72pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(6, 40, 61);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;</string>
+          </property>
+          <property name="text">
+           <string>6</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QLabel" name="index7">
+          <property name="styleSheet">
+           <string notr="true">font: 87 72pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(6, 40, 61);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;</string>
+          </property>
+          <property name="text">
+           <string>8</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="index0">
+          <property name="styleSheet">
+           <string notr="true">font: 87 72pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(6, 40, 61);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;</string>
+          </property>
+          <property name="text">
+           <string>4</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="index3">
+          <property name="styleSheet">
+           <string notr="true">font: 87 72pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(223, 246, 255);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;
+</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QPushButton" name="DFSButton">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {font: 87 26pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(255, 169, 20);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;
+}
+QPushButton:hover{font: 87 26pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(207, 137, 16);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;
+}</string>
+          </property>
+          <property name="text">
+           <string>DFS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="BFSButton">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {font: 87 26pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(255, 169, 20);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;
+}
+QPushButton:hover{font: 87 26pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(207, 137, 16);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;
+}</string>
+          </property>
+          <property name="text">
+           <string>BFS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="AButton">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {font: 87 26pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(255, 169, 20);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;
+}
+QPushButton:hover{font: 87 26pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(207, 137, 16);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;
+}</string>
+          </property>
+          <property name="text">
+           <string>A*</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1205</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
