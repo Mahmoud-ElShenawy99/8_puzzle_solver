@@ -1,6 +1,6 @@
 import threading
 import time
-
+import timeit
 from PyQt5.QtCore import pyqtSignal, QObject
 
 from Model.DataStructures import HashSet
@@ -49,9 +49,10 @@ class UninformedSearch(QObject):
                 if neighbor not in self._frontier and not self._explored_set.contains(neighbor):
                     self._frontier.append(neighbor)
                     self._parent_map.set_val(neighbor, s)
-        end = time.time()
+
         path_to_goal,cost_to_path=self.get_path(initial_state,goal_state)
-        return True,path_to_goal,cost_to_path,self._explored_set.get_values(),int(end-begin)
+        end = time.time()
+        return True,path_to_goal,cost_to_path,self._explored_set.get_values(),(end - begin)
 
     def _check_solvable(self,state):
         state = str(state)
@@ -63,6 +64,7 @@ class UninformedSearch(QObject):
             for j in range(i + 1, len(arr)):
                 if (arr[i] > arr[j] and arr[i] != '0' and arr[j] != '0'):
                     inv_count += 1
+        # print(inv_count)
         return True if inv_count %2 == 1 else False
 
 
@@ -90,7 +92,7 @@ class UninformedSearch(QObject):
                     self._parent_map.set_val(neighbor, s)
         end = time.time()
         path_to_goal,cost_to_path=self.get_path(initial_state,goal_state)
-        return True,path_to_goal,cost_to_path,self._explored_set.get_values(),int(end-begin)
+        return True,path_to_goal,cost_to_path,self._explored_set.get_values(),(end-begin)
 
     def get_path(self,initial_state,goal_state):
         path_to_goal=[]
