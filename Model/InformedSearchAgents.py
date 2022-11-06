@@ -33,6 +33,36 @@ class informedSearch(QObject):
                 if (arr[i] > arr[j] and arr[i] != '0' and arr[j] != '0'):
                     inv_count += 1
         return True if inv_count %2 == 1 else False
+    def get_2D_index(self,n,key):
+        converted_n = str(n)
+        my_list = []
+        for x in converted_n:
+            my_list.append(x)
+        if converted_n[0]!= 0:
+            my_list.insert(0, '0')
+        print(n,key)
+        for e,i in zip(my_list,range(0,9,1)):
+
+            if int(e) == key:
+                x=i // 3
+                y=i % 3
+                return x,y
+
+
+    def find_heuristic_manhattan(self,inital_state,goal_state): #3120456789
+        converted_i = str(inital_state)
+        heu=0
+        for e,i in zip(converted_i,range(0,9,1)):
+            x,y=self.get_2D_index(goal_state,int(e))
+            print(x,y)
+            l = i // 3
+            m = i % 3
+            heu+=abs(x-l)+abs(y-m)
+            print(heu)
+        return heu
+
+
+
 
     def find_heuristic(self,inital_state,goal_state):
         if inital_state==goal_state:
@@ -57,7 +87,7 @@ class informedSearch(QObject):
         self._frontier.clear()
         self._explored_set.clear()
         self._parent_map.clear()
-        h=self.find_heuristic(inital_state,goal_state)
+        h=self.find_heuristic_manhattan(inital_state,goal_state)
         inital_node=node(inital_state,h)
         self._frontier.append(inital_node)
         self._parent_map.set_val(inital_node.nodee,inital_node.nodee)
@@ -152,15 +182,17 @@ class informedSearch(QObject):
         my_list[position1], my_list[position2] = my_list[position2], my_list[position1]
         return my_list
 if __name__ == "__main__":
-    initial = 312045678   #3 1 2  0 1 2
-                          #4 7 5  3 4 5
-                          #0 6 8  6 7 8
+    initial = 382054671   #3 8 2  0 1 2
+                          #0 5 4  3 4 5
+                          #6 7 1  6 7 8
     goal = 12345678
     obj=informedSearch()
-
-
-    # print(obj.find_heuristic(initial,goal))
-    # obj.A_star(initial,goal)
+   # w,z=obj.get_2D_index(312045678,3)
+    #print(w,z)
+    h=obj.find_heuristic_manhattan(initial,12345678)
+    print(h)
+    # print(obj.find_heuristic(initial,goal))              #
+    # obj.A_star(initial,goal)                             #
     # d=1
     # f=2
     # g=3
