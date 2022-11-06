@@ -5,10 +5,6 @@ from Model.DataStructures import HashSet
 from Model.DataStructures import HashMap
 import heapq
 
-def swap(my_list, position1, position2):
-    my_list[position1], my_list[position2] = my_list[position2], my_list[position1]
-    return my_list
-
 
 class node:
     def __init__(self,nodee,h):
@@ -37,6 +33,7 @@ class informedSearch(QObject):
                 if (arr[i] > arr[j] and arr[i] != '0' and arr[j] != '0'):
                     inv_count += 1
         return True if inv_count %2 == 1 else False
+
     def find_heuristic(self,inital_state,goal_state):
         if inital_state==goal_state:
             return 0
@@ -108,46 +105,46 @@ class informedSearch(QObject):
 
         if index == -1:
             my_list.insert(0, '0')
-            neighbors.append(int("".join(swap(my_list.copy(), 0, 1))))
-            neighbors.append(int("".join(swap(my_list.copy(), 0, 3))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 0, 1))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 0, 3))))
 
         elif index == 1:
-            neighbors.append(int("".join(swap(my_list.copy(), 1, 0))))
-            neighbors.append(int("".join(swap(my_list.copy(), 1, 2))))
-            neighbors.append(int("".join(swap(my_list.copy(), 1, 4))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 1, 0))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 1, 2))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 1, 4))))
 
         elif index == 2:
-            neighbors.append(int("".join(swap(my_list.copy(), 2, 1))))
-            neighbors.append(int("".join(swap(my_list.copy(), 2, 5))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 2, 1))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 2, 5))))
 
         elif index == 3:
-            neighbors.append(int("".join(swap(my_list.copy(), 3, 0))))
-            neighbors.append(int("".join(swap(my_list.copy(), 3, 4))))
-            neighbors.append(int("".join(swap(my_list.copy(), 3, 6))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 3, 0))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 3, 4))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 3, 6))))
 
         elif index == 4:
-            neighbors.append(int("".join(swap(my_list.copy(), 4, 1))))
-            neighbors.append(int("".join(swap(my_list.copy(), 4, 3))))
-            neighbors.append(int("".join(swap(my_list.copy(), 4, 5))))
-            neighbors.append(int("".join(swap(my_list.copy(), 4, 7))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 4, 1))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 4, 3))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 4, 5))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 4, 7))))
 
         elif index == 5:
-            neighbors.append(int("".join(swap(my_list.copy(), 5, 2))))
-            neighbors.append(int("".join(swap(my_list.copy(), 5, 4))))
-            neighbors.append(int("".join(swap(my_list.copy(), 5, 8))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 5, 2))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 5, 4))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 5, 8))))
 
         elif index == 6:
-            neighbors.append(int("".join(swap(my_list.copy(), 6, 3))))
-            neighbors.append(int("".join(swap(my_list.copy(), 6, 7))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 6, 3))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 6, 7))))
 
         elif index == 7:
-            neighbors.append(int("".join(swap(my_list.copy(), 7, 4))))
-            neighbors.append(int("".join(swap(my_list.copy(), 7, 6))))
-            neighbors.append(int("".join(swap(my_list.copy(), 7, 8))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 7, 4))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 7, 6))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 7, 8))))
 
         else:
-            neighbors.append(int("".join(swap(my_list.copy(), 8, 5))))
-            neighbors.append(int("".join(swap(my_list.copy(), 8, 7))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 8, 5))))
+            neighbors.append(int("".join(self._swap(my_list.copy(), 8, 7))))
 
         return neighbors
 

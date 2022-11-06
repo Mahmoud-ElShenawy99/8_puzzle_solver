@@ -14,14 +14,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Solver(object):
     def setupUi(self, Solver):
         Solver.setObjectName("Solver")
-        Solver.resize(1205, 804)
+        Solver.resize(1205, 858)
         Solver.setStyleSheet("\n"
 "background-color: rgb(6, 40, 61);\n"
 "")
         self.centralwidget = QtWidgets.QWidget(Solver)
         self.centralwidget.setObjectName("centralwidget")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
         self.mainlabel = QtWidgets.QLabel(self.centralwidget)
@@ -167,7 +167,31 @@ class Ui_Solver(object):
         self.AButton.setObjectName("AButton")
         self.horizontalLayout_3.addWidget(self.AButton)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
-        self.horizontalLayout_2.addLayout(self.verticalLayout)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.initialLineEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.initialLineEdit.setStyleSheet("font: 10 15pt \"Source Code Pro Black\";\n"
+"background-color: rgb(255, 169, 20);\n"
+"color: rgb(37, 109, 133);\n"
+"border: 3px solid rgb(223, 246, 255);\n"
+"border-radius: 20px;")
+        self.initialLineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.initialLineEdit.setObjectName("initialLineEdit")
+        self.horizontalLayout.addWidget(self.initialLineEdit)
+        self.finalLineEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.finalLineEdit.setStyleSheet("font: 10 15pt \"Source Code Pro Black\";\n"
+"background-color: rgb(255, 169, 20);\n"
+"color: rgb(37, 109, 133);\n"
+"border: 3px solid rgb(223, 246, 255);\n"
+"border-radius: 20px;")
+        self.finalLineEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.finalLineEdit.setObjectName("finalLineEdit")
+        self.horizontalLayout.addWidget(self.finalLineEdit)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.verticalLayout.setStretch(0, 5)
+        self.verticalLayout.setStretch(1, 5)
+        self.verticalLayout.setStretch(2, 5)
+        self.verticalLayout_2.addLayout(self.verticalLayout)
         Solver.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Solver)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1205, 26))
@@ -195,6 +219,8 @@ class Ui_Solver(object):
         self.DFSButton.setText(_translate("Solver", "DFS"))
         self.BFSButton.setText(_translate("Solver", "BFS"))
         self.AButton.setText(_translate("Solver", "A*"))
+        self.initialLineEdit.setText(_translate("Solver", "312475608"))
+        self.finalLineEdit.setText(_translate("Solver", "12345678"))
 
 
 if __name__ == "__main__":
