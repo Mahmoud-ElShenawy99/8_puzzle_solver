@@ -18,6 +18,7 @@ class node:
         return self.f < nxt.f
 
 
+
 class informedSearch(QObject):
     state_signal = pyqtSignal(int)
 
@@ -96,7 +97,6 @@ class informedSearch(QObject):
             m = i % 3
 
             heu += math.sqrt(pow(x - l, 2) + pow(y - m, 2))
-
         return heu
 
     def get_missplaced_heuristic(self,inital_state, goal_state):
@@ -123,34 +123,38 @@ class informedSearch(QObject):
         self._explored_set.clear()
         self._parent_map.clear()
         self._frontier_map.clear()
-        h = self.get_manhattan_heuristic(inital_state, goal_state)
-            # if Heu_algorithm =="Man" else self.get_euclidean_heuristic(inital_state, goal_state)
+
+
+        if Heu_algorithm =="Man" :
+            h = self.get_manhattan_heuristic(inital_state, goal_state)
+        else:
+            h=self.get_euclidean_heuristic(inital_state, goal_state)
         inital_node = node(inital_state, h, 0)
         self._frontier.append(inital_node)
         self._frontier_map[inital_state] = h
         self._parent_map.set_val(inital_node.nodee, inital_node.nodee)
         while (len(self._frontier) != 0):
-            # heapq.heapify(self._frontier)
+            heapq.heapify(self._frontier)
             s = heapq.heappop(self._frontier)
-            if s in self._frontier_map:
-                self._frontier_map.pop(s)
+            if s.nodee in self._frontier_map:
+                self._frontier_map.pop(s.nodee)
             self._explored_set.add(s.nodee)
             if s.nodee == goal_state:
                 break
             neighbors = self._get_neighbors(s.nodee)
             for neighbor in neighbors:
-                # if Heu_algorithm == "Man":
-                neighbor_node = node(neighbor, self.get_manhattan_heuristic(neighbor, goal_state), s.g + 1)
-                # else:
-                #     neighbor_node = node(neighbor, self.get_euclidean_heuristic(neighbor, goal_state), s.g)
+                if Heu_algorithm == "Man":
+                    neighbor_node = node(neighbor, self.get_manhattan_heuristic(neighbor, goal_state), s.g + 1)
+                else:
+                    neighbor_node = node(neighbor, self.get_euclidean_heuristic(neighbor, goal_state), s.g + 1)
 
-                if neighbor_node not in self._frontier_map and not self._explored_set.contains(neighbor_node.nodee):
+                if neighbor_node.nodee not in self._frontier_map and not self._explored_set.contains(neighbor_node.nodee):
                     self._frontier.append(neighbor_node)
                     self._frontier_map[neighbor] = neighbor_node.f
                     self._parent_map.set_val(neighbor_node.nodee, s.nodee)
-                elif neighbor_node in self._frontier_map:
+                elif neighbor_node.nodee in self._frontier_map:
                     if neighbor_node.f < self._frontier_map[neighbor]:
-                        heapq.heappush(self._frontier, neighbor)
+                        heapq.heappush(self._frontier, neighbor_node)
                         self._frontier_map[neighbor] = neighbor_node.f
                         self._parent_map.set_val(neighbor, s.nodee)
         end = time.time()
@@ -217,7 +221,7 @@ class informedSearch(QObject):
         else:
             neighbors.append(int("".join(self._swap(my_list.copy(), 8, 5))))
             neighbors.append(int("".join(self._swap(my_list.copy(), 8, 7))))
-
+        neighbors.sort()
         return neighbors
 
     def _swap(self, my_list, position1, position2):
