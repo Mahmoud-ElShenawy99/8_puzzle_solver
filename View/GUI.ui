@@ -19,8 +19,8 @@ background-color: rgb(6, 40, 61);
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout" stretch="5,5,5,0">
       <item>
        <widget class="QLabel" name="mainlabel">
@@ -242,7 +242,7 @@ border-radius: 20px;
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="AButton">
+         <widget class="QPushButton" name="AMButton">
           <property name="styleSheet">
            <string notr="true">QPushButton {font: 87 26pt &quot;Source Code Pro Black&quot;;
 background-color: rgb(255, 169, 20);
@@ -258,7 +258,28 @@ border-radius: 20px;
 }</string>
           </property>
           <property name="text">
-           <string>A*</string>
+           <string>A* M</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="AEButton">
+          <property name="styleSheet">
+           <string notr="true">QPushButton {font: 87 26pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(255, 169, 20);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;
+}
+QPushButton:hover{font: 87 26pt &quot;Source Code Pro Black&quot;;
+background-color: rgb(207, 137, 16);
+color: rgb(37, 109, 133);
+border: 3px solid rgb(223, 246, 255);
+border-radius: 20px;
+}</string>
+          </property>
+          <property name="text">
+           <string>A* E</string>
           </property>
          </widget>
         </item>

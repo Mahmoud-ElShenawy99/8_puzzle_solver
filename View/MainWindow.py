@@ -20,8 +20,8 @@ class Ui_Solver(object):
 "")
         self.centralwidget = QtWidgets.QWidget(Solver)
         self.centralwidget.setObjectName("centralwidget")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName("gridLayout")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
         self.mainlabel = QtWidgets.QLabel(self.centralwidget)
@@ -151,8 +151,8 @@ class Ui_Solver(object):
 "}")
         self.BFSButton.setObjectName("BFSButton")
         self.horizontalLayout_3.addWidget(self.BFSButton)
-        self.AButton = QtWidgets.QPushButton(self.centralwidget)
-        self.AButton.setStyleSheet("QPushButton {font: 87 26pt \"Source Code Pro Black\";\n"
+        self.AMButton = QtWidgets.QPushButton(self.centralwidget)
+        self.AMButton.setStyleSheet("QPushButton {font: 87 26pt \"Source Code Pro Black\";\n"
 "background-color: rgb(255, 169, 20);\n"
 "color: rgb(37, 109, 133);\n"
 "border: 3px solid rgb(223, 246, 255);\n"
@@ -164,8 +164,23 @@ class Ui_Solver(object):
 "border: 3px solid rgb(223, 246, 255);\n"
 "border-radius: 20px;\n"
 "}")
-        self.AButton.setObjectName("AButton")
-        self.horizontalLayout_3.addWidget(self.AButton)
+        self.AMButton.setObjectName("AMButton")
+        self.horizontalLayout_3.addWidget(self.AMButton)
+        self.AEButton = QtWidgets.QPushButton(self.centralwidget)
+        self.AEButton.setStyleSheet("QPushButton {font: 87 26pt \"Source Code Pro Black\";\n"
+"background-color: rgb(255, 169, 20);\n"
+"color: rgb(37, 109, 133);\n"
+"border: 3px solid rgb(223, 246, 255);\n"
+"border-radius: 20px;\n"
+"}\n"
+"QPushButton:hover{font: 87 26pt \"Source Code Pro Black\";\n"
+"background-color: rgb(207, 137, 16);\n"
+"color: rgb(37, 109, 133);\n"
+"border: 3px solid rgb(223, 246, 255);\n"
+"border-radius: 20px;\n"
+"}")
+        self.AEButton.setObjectName("AEButton")
+        self.horizontalLayout_3.addWidget(self.AEButton)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -191,7 +206,7 @@ class Ui_Solver(object):
         self.verticalLayout.setStretch(0, 5)
         self.verticalLayout.setStretch(1, 5)
         self.verticalLayout.setStretch(2, 5)
-        self.verticalLayout_2.addLayout(self.verticalLayout)
+        self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
         Solver.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Solver)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1205, 26))
@@ -218,7 +233,8 @@ class Ui_Solver(object):
         self.index0.setText(_translate("Solver", "4"))
         self.DFSButton.setText(_translate("Solver", "DFS"))
         self.BFSButton.setText(_translate("Solver", "BFS"))
-        self.AButton.setText(_translate("Solver", "A*"))
+        self.AMButton.setText(_translate("Solver", "A* M"))
+        self.AEButton.setText(_translate("Solver", "A* E"))
         self.initialLineEdit.setText(_translate("Solver", "312475608"))
         self.finalLineEdit.setText(_translate("Solver", "12345678"))
 

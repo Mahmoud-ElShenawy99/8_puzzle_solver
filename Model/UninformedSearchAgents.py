@@ -20,6 +20,7 @@ class UninformedSearch(QObject):
         self._frontier = []  # stack
         self._explored_set = HashSet()
         self._parent_map = HashMap()
+        self._frontier_map = HashMap()
         # self.thread = threading.Thread(target=self.DFS,args=(arg1,arg2))
         # self.thread.start()
         self.path=[]
@@ -31,22 +32,26 @@ class UninformedSearch(QObject):
             print("Unsolvable")
             return False,[],-1,[],0
         begin = time.time()
+        self._frontier_map.clear()
         self._frontier.clear()
         self._explored_set.clear()
         self._parent_map.clear()
         self.state_signal.emit(initial_state)
-        self._frontier.append(initial_state)  # insert s' into frontier
+        self._frontier.append(initial_state) # insert s' into frontier
+        self._frontier_map.set_val(initial_state,None)
         self._parent_map.set_val(initial_state, initial_state)  # insert <s',s'> into parent map
         while len(self._frontier) != 0:  # while (frontier not empty)
             s = self._frontier.pop()
+            self._frontier_map.delete_val(s)
             self.state_signal.emit(s)
             self._explored_set.add(s)
             if s == goal_state:
                 break
             neighbors = self._get_neighbors(s, "DFS")
             for neighbor in neighbors:
-                if neighbor not in self._frontier and not self._explored_set.contains(neighbor):
+                if not (self._frontier_map.get_val(neighbor)) and not self._explored_set.contains(neighbor):
                     self._frontier.append(neighbor)
+                    self._frontier_map.set_val(neighbor, None)
                     self._parent_map.set_val(neighbor, s)
 
         path_to_goal,cost_to_path=self.get_path(initial_state,goal_state)
@@ -66,32 +71,36 @@ class UninformedSearch(QObject):
         # print(inv_count)
         return True if inv_count %2 == 1 else False
 
-
-    def BFS(self,initial_state, goal_state):
+    def BFS(self, initial_state, goal_state):
         if self._check_solvable(initial_state):
             print("Unsolvable")
-            return False,[],-1,[],0
+            return False, [], -1, [], 0
         begin = time.time()
+        self._frontier_map.clear()
         self._frontier.clear()
         self._explored_set.clear()
         self._parent_map.clear()
         self.state_signal.emit(initial_state)
         self._frontier.append(initial_state)  # insert s' into frontier
+        self._frontier_map.set_val(initial_state, None)
         self._parent_map.set_val(initial_state, initial_state)  # insert <s',s'> into parent map
         while len(self._frontier) != 0:  # while (frontier not empty)
             s = self._frontier.pop(0)
+            self._frontier_map.delete_val(s)
             self.state_signal.emit(s)
             self._explored_set.add(s)
             if s == goal_state:
                 break
             neighbors = self._get_neighbors(s, "DFS")
             for neighbor in neighbors:
-                if neighbor not in self._frontier and not self._explored_set.contains(neighbor):
+                if not(self._frontier_map.get_val(neighbor)) and not self._explored_set.contains(neighbor):
                     self._frontier.append(neighbor)
+                    self._frontier_map.set_val(neighbor, None)
                     self._parent_map.set_val(neighbor, s)
+
+        path_to_goal, cost_to_path = self.get_path(initial_state, goal_state)
         end = time.time()
-        path_to_goal,cost_to_path=self.get_path(initial_state,goal_state)
-        return True,path_to_goal,cost_to_path,self._explored_set.get_values(),(end-begin)
+        return True, path_to_goal, cost_to_path, self._explored_set.get_values(), (end - begin)
 
     def get_path(self,initial_state,goal_state):
         path_to_goal=[]

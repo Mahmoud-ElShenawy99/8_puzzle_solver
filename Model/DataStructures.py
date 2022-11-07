@@ -110,7 +110,7 @@ class HashMap:
         if found_key:
             return record_val
         else:
-            return "No record found"
+            return 0
 
     # Remove a value with specific key
     def delete_val(self, key):
